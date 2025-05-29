@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balanço Patrimonial Avançado</title>
+
+  <!-- Manifesto PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#007bff" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Balanço Patrimonial Avançado</h1>
+
+    <form id="balanco-form">
+      <div class="form-group">
+        <label for="nome">Nome da Conta</label>
+        <input type="text" id="nome" placeholder="Ex: Caixa e Bancos" required />
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo</label>
+        <select id="tipo" required>
+          <option value="">Selecione</option>
+          <option value="Ativo">Ativo</option>
+          <option value="Passivo">Passivo</option>
+          <option value="PL">Patrimônio Líquido</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="subgrupo">Subgrupo</label>
+        <input type="text" id="subgrupo" placeholder="Ex: Circulante" required />
+      </div>
+      <div class="form-group">
+        <label for="valorAtual">Valor Atual (R$)</label>
+        <input type="number" id="valorAtual" step="0.01" placeholder="Ex: 10000" required />
+      </div>
+      <div class="form-group">
+        <label for="valorIdeal">Valor Ideal (R$)</label>
+        <input type="number" id="valorIdeal" step="0.01" placeholder="Ex: 12000" required />
+      </div>
+      <div class="form-group">
+        <label for="importancia">Nota de Importância (1 a 5)</label>
+        <input type="number" id="importancia" step="1" min="1" max="5" placeholder="Ex: 3" required />
+      </div>
+      <button type="submit">Adicionar Conta</button>
+    </form>
+
+    <section id="resultado">
+      <h2>Resumo do Balanço</h2>
+      <table id="tabela-contas">
+        <thead>
+          <tr>
+            <th>Conta</th>
+            <th>Tipo</th>
+            <th>Subgrupo</th>
+            <th>Atual (R$)</th>
+            <th>Ideal (R$)</th>
+            <th>Diferença</th>
+            <th>%</th>
+            <th>Importância</th>
+            <th>Recomendação</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="totais">
+        <p><strong>Total Ativo:</strong> R$ <span id="totalAtivo">0.00</span></p>
+        <p><strong>Total Passivo:</strong> R$ <span id="totalPassivo">0.00</span></p>
+        <p><strong>Total PL:</strong> R$ <span id="totalPL">0.00</span></p>
+        <p><strong>Saldo (Ativo - Passivo):</strong> R$ <span id="saldo">0.00</span></p>
+      </div>
+    </section>
+
+    <section class="graficos">
+      <div>
+        <h3>Gráfico de Pizza (Distribuição por Tipo)</h3>
+        <canvas id="graficoPizza" width="400" height="400"></canvas>
+      </div>
+      <div>
+        <h3>Gráfico de Barras (Atual x Ideal)</h3>
+        <canvas id="graficoBarra" width="400" height="400"></canvas>
+      </div>
+      <div>
+        <h3>Gráfico de Importância</h3>
+        <canvas id="graficoImportancia" width="400" height="400"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+
+  <!-- Registro do Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(() => console.log("Service Worker registrado com sucesso."))
+        .catch((err) => console.error("Erro ao registrar o Service Worker:", err));
+    }
+  </script>
+</body>
+</html>
