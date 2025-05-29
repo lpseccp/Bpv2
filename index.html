@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Balanço Patrimonial</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin-right: 8px;
+    }
+
+    #contas-container {
+      margin-bottom: 20px;
+    }
+
+    .conta-item {
+      margin-bottom: 6px;
+    }
+
+    canvas {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
   <h1>Balanço Patrimonial</h1>
@@ -29,10 +63,10 @@
   <p><strong id="recomendacao">Aguardando dados...</strong></p>
 
   <h2>Gráfico de Pizza</h2>
-  <canvas id="grafico-pizza" width="300" height="300"></canvas>
+  <canvas id="grafico-pizza" width="400" height="400"></canvas>
 
   <h2>Gráfico de Barras</h2>
-  <canvas id="grafico-barra" width="300" height="300"></canvas>
+  <canvas id="grafico-barra" width="400" height="400"></canvas>
 
   <script src="app.js"></script>
 </body>
