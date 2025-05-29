@@ -67,8 +67,9 @@ function atualizarTotais() {
 }
 
 function desenharGraficos() {
-  const ctxPizza = document.getElementById("grafico-pizza").getContext("2d");
-  const ctxBarra = document.getElementById("grafico-barra").getContext("2d");
+  const ctxPizza = document.getElementById("grafico-pizza")?.getContext("2d");
+  const ctxBarra = document.getElementById("grafico-barra")?.getContext("2d");
+  const ctxComparacao = document.getElementById("grafico-comparacao")?.getContext("2d");
 
   const ativos = contas.filter(c => c.tipo === "ativo");
   const passivos = contas.filter(c => c.tipo === "passivo");
@@ -76,38 +77,59 @@ function desenharGraficos() {
   const totalAtivos = ativos.reduce((acc, c) => acc + c.valor, 0);
   const totalPassivos = passivos.reduce((acc, c) => acc + c.valor, 0);
 
-  if (window.pizzaChart) window.pizzaChart.destroy();
-  if (window.barraChart) window.barraChart.destroy();
-
-  window.pizzaChart = new Chart(ctxPizza, {
-    type: 'pie',
-    data: {
-      labels: ['Ativos', 'Passivos'],
-      datasets: [{
-        label: 'Distribuição',
-        data: [totalAtivos, totalPassivos],
-        backgroundColor: ['#4caf50', '#f44336']
-      }]
-    }
-  });
-
-  window.barraChart = new Chart(ctxBarra, {
-    type: 'bar',
-    data: {
-      labels: ['Ativos', 'Passivos'],
-      datasets: [{
-        label: 'Comparativo',
-        data: [totalAtivos, totalPassivos],
-        backgroundColor: ['#2196f3', '#ff9800']
-      }]
-    },
-    options: {
-      scales: {
-        y: { beginAtZero: true }
+  if (ctxPizza) {
+    if (window.pizzaChart) window.pizzaChart.destroy();
+    window.pizzaChart = new Chart(ctxPizza, {
+      type: 'pie',
+      data: {
+        labels: ['Ativos', 'Passivos'],
+        datasets: [{
+          label: 'Distribuição',
+          data: [totalAtivos, totalPassivos],
+          backgroundColor: ['#4caf50', '#f44336']
+        }]
       }
-    }
-  });
+    });
+  }
+
+  if (ctxBarra) {
+    if (window.barraChart) window.barraChart.destroy();
+    window.barraChart = new Chart(ctxBarra, {
+      type: 'bar',
+      data: {
+        labels: ['Ativos', 'Passivos'],
+        datasets: [{
+          label: 'Comparativo',
+          data: [totalAtivos, totalPassivos],
+          backgroundColor: ['#2196f3', '#ff9800']
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  if (ctxComparacao) {
+    if (window.comparacaoChart) window.comparacaoChart.destroy();
+    window.comparacaoChart = new Chart(ctxComparacao, {
+      type: 'line',
+      data: {
+        labels: ['Ativos', 'Passivos'],
+        datasets: [{
+          label: 'Evolução',
+          data: [totalAtivos, totalPassivos],
+          fill: false,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          tension: 0.1
+        }]
+      }
+    });
+  }
 }
 
-// Inicialização
-renderizarContas();
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarContas();
+});
