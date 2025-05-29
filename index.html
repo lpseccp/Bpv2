@@ -6,68 +6,63 @@
   <title>Balanço Patrimonial</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
+    nav button {
+      margin: 0.5rem;
     }
-
-    h1, h2 {
-      color: #333;
+    section {
+      display: none;
     }
-
-    form {
-      margin-bottom: 20px;
-    }
-
-    input, select, button {
-      padding: 8px;
-      margin-right: 8px;
-    }
-
-    #contas-container {
-      margin-bottom: 20px;
-    }
-
-    .conta-item {
-      margin-bottom: 6px;
-    }
-
-    canvas {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      margin-bottom: 30px;
+    section.ativa {
+      display: block;
     }
   </style>
 </head>
 <body>
   <h1>Balanço Patrimonial</h1>
 
-  <form id="conta-form">
-    <input id="nome-conta" placeholder="Nome da conta" required />
-    <input id="valor-conta" type="number" placeholder="Valor" required />
-    <select id="tipo-conta">
-      <option value="ativo">Ativo</option>
-      <option value="passivo">Passivo</option>
-    </select>
-    <button type="submit">Adicionar Conta</button>
-  </form>
+  <nav>
+    <button onclick="mostrarPagina('formulario')">Cadastro</button>
+    <button onclick="mostrarPagina('resumo')">Resumo</button>
+    <button onclick="mostrarPagina('graficos')">Gráficos</button>
+  </nav>
 
-  <h2>Contas Registradas</h2>
-  <div id="contas-container"></div>
+  <section id="formulario" class="ativa">
+    <form id="conta-form">
+      <input id="nome-conta" placeholder="Nome da conta" required />
+      <input id="valor-conta" type="number" placeholder="Valor" required />
+      <select id="tipo-conta">
+        <option value="ativo">Ativo</option>
+        <option value="passivo">Passivo</option>
+      </select>
+      <button type="submit">Adicionar Conta</button>
+    </form>
 
-  <h2>Resumo</h2>
-  <p>Total de Ativos: R$ <span id="ativos-total">0.00</span></p>
-  <p>Total de Passivos: R$ <span id="passivos-total">0.00</span></p>
-  <p>Saldo Ideal (30% dos Ativos): R$ <span id="saldo-ideal">0.00</span></p>
-  <p><strong id="recomendacao">Aguardando dados...</strong></p>
+    <h2>Contas Registradas</h2>
+    <div id="contas-container"></div>
+  </section>
 
-  <h2>Gráfico de Pizza</h2>
-  <canvas id="grafico-pizza" width="400" height="400"></canvas>
+  <section id="resumo">
+    <h2>Resumo</h2>
+    <p>Total de Ativos: R$ <span id="ativos-total">0.00</span></p>
+    <p>Total de Passivos: R$ <span id="passivos-total">0.00</span></p>
+    <p>Saldo Ideal (30% dos Ativos): R$ <span id="saldo-ideal">0.00</span></p>
+    <p><strong id="recomendacao">Aguardando dados...</strong></p>
+  </section>
 
-  <h2>Gráfico de Barras</h2>
-  <canvas id="grafico-barra" width="400" height="400"></canvas>
+  <section id="graficos">
+    <h2>Gráfico de Pizza</h2>
+    <canvas id="grafico-pizza" width="300" height="300"></canvas>
 
+    <h2>Gráfico de Barras</h2>
+    <canvas id="grafico-barra" width="300" height="300"></canvas>
+  </section>
+
+  <script>
+    function mostrarPagina(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('ativa'));
+      document.getElementById(id).classList.add('ativa');
+    }
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
