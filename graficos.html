@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráficos Financeiros</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Gráficos Financeiros</h1>
+    <nav>
+      <ul>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="resumo.html">Resumo</a></li>
+        <li><a href="graficos.html">Gráficos</a></li>
+      </ul>
+    </nav>
+
+    <div class="graficos">
+      <h2>Distribuição de Ativos e Passivos</h2>
+      <canvas id="graficoPizza" width="400" height="400"></canvas>
+
+      <h2>Contas Individuais</h2>
+      <canvas id="graficoBarras" width="400" height="400"></canvas>
+
+      <h2>Comparação Total</h2>
+      <canvas id="graficoComparacao" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const contas = getContas();
+
+    const ativos = contas.filter(c => c.tipo === "ativo");
+    const passivos = contas.filter(c => c.tipo === "passivo");
+
+    const labelsPizza = ['Ativos', 'Passivos'];
+    const dataPizza = [ativos.reduce((s, c) => s + c.valor, 0), passivos.reduce((s, c) => s + c.valor, 0)];
+
+    new Chart(document.getElementById("graficoPizza"), {
+      type: 'pie',
+      data: {
+        labels: labelsPizza,
+        datasets: [{
+          data: dataPizza,
+          backgroundColor: ['#4CAF50', '#F44336']
+        }]
+      }
+    });
+
+    const labelsBarras = contas.map(c => c.nome);
+    const dataBarras = contas.map(c => c.valor);
+    const cores = contas.map(c => c.tipo === "ativo" ? '#4CAF50' : '#F44336');
+
+    new Chart(document.getElementById("graficoBarras"), {
+      type: 'bar',
+      data: {
+        labels: labelsBarras,
+        datasets: [{
+          label: 'Valor das Contas',
+          data: dataBarras,
+          backgroundColor: cores
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("graficoComparacao"), {
+      type: 'bar',
+      data: {
+        labels: ['Ativos', 'Passivos'],
+        datasets: [{
+          label: 'Totais',
+          data: dataPizza,
+          backgroundColor: ['#4CAF50', '#F44336']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
