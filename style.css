@@ -1,52 +1,111 @@
-body {
+* {
+  box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f7f7;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: #f4f6f8;
   color: #333;
+  padding: 20px;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 960px;
   margin: auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 10px #ccc;
-  margin-top: 40px;
-  border-radius: 10px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
-h1 {
-  text-align: center;
+h1, h2 {
+  color: #1a73e8;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  background-color: #1a73e8;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #0c5fd1;
+}
+
+.conta-item {
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conta-item strong {
+  color: #333;
+}
+
+.conta-item button {
+  background-color: #f44336;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.conta-item button:hover {
+  background-color: #d32f2f;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
   gap: 20px;
-  padding: 0;
+  margin-bottom: 30px;
 }
 
 nav a {
   text-decoration: none;
-  color: #0077cc;
+  color: #1a73e8;
   font-weight: bold;
 }
 
-input, select, button {
-  margin: 5px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+nav a:hover {
+  text-decoration: underline;
 }
 
-button {
-  background-color: #0077cc;
-  color: white;
-  cursor: pointer;
+.graficos canvas {
+  margin-bottom: 40px;
+  max-width: 100%;
 }
 
-button:hover {
-  background-color: #005fa3;
+.resumo p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.resumo strong {
+  color: #1a73e8;
 }
