@@ -2,67 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Balanço Patrimonial</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    nav button {
-      margin: 0.5rem;
-    }
-    section {
-      display: none;
-    }
-    section.ativa {
-      display: block;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
-  <h1>Balanço Patrimonial</h1>
+  <div class="container">
+    <h1>Balanço Patrimonial</h1>
+    <nav>
+      <ul>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="resumo.html">Resumo</a></li>
+        <li><a href="graficos.html">Gráficos</a></li>
+      </ul>
+    </nav>
+    <p>Bem-vindo ao sistema de controle patrimonial. Escolha uma opção acima.</p>
+  </div>
 
-  <nav>
-    <button onclick="mostrarPagina('formulario')">Cadastro</button>
-    <button onclick="mostrarPagina('resumo')">Resumo</button>
-    <button onclick="mostrarPagina('graficos')">Gráficos</button>
-  </nav>
-
-  <section id="formulario" class="ativa">
-    <form id="conta-form">
-      <input id="nome-conta" placeholder="Nome da conta" required />
-      <input id="valor-conta" type="number" placeholder="Valor" required />
-      <select id="tipo-conta">
-        <option value="ativo">Ativo</option>
-        <option value="passivo">Passivo</option>
-      </select>
-      <button type="submit">Adicionar Conta</button>
-    </form>
-
-    <h2>Contas Registradas</h2>
-    <div id="contas-container"></div>
-  </section>
-
-  <section id="resumo">
-    <h2>Resumo</h2>
-    <p>Total de Ativos: R$ <span id="ativos-total">0.00</span></p>
-    <p>Total de Passivos: R$ <span id="passivos-total">0.00</span></p>
-    <p>Saldo Ideal (30% dos Ativos): R$ <span id="saldo-ideal">0.00</span></p>
-    <p><strong id="recomendacao">Aguardando dados...</strong></p>
-  </section>
-
-  <section id="graficos">
-    <h2>Gráfico de Pizza</h2>
-    <canvas id="grafico-pizza" width="300" height="300"></canvas>
-
-    <h2>Gráfico de Barras</h2>
-    <canvas id="grafico-barra" width="300" height="300"></canvas>
-  </section>
-
-  <script>
-    function mostrarPagina(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('ativa'));
-      document.getElementById(id).classList.add('ativa');
-    }
-  </script>
   <script src="app.js"></script>
 </body>
 </html>
