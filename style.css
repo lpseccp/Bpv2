@@ -1,34 +1,52 @@
-/* style.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; color: #333; }
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px #ccc;
+  margin-top: 40px;
+  border-radius: 10px;
+}
 
-main { max-width: 1200px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+h1 {
+  text-align: center;
+}
 
-h1, h2, h3 { text-align: center; color: #007bff; }
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+}
 
-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px; }
+nav a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+}
 
-.form-group { display: flex; flex-direction: column; }
+input, select, button {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-.form-group label { font-weight: bold; margin-bottom: 5px; }
+button {
+  background-color: #0077cc;
+  color: white;
+  cursor: pointer;
+}
 
-.form-group input, .form-group select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
-
-button[type="submit"] { grid-column: span 2; padding: 10px; background-color: #007bff; color: #fff; font-size: 18px; border: none; border-radius: 5px; cursor: pointer; }
-
-button[type="submit"]:hover { background-color: #0056b3; }
-
-#tabela-contas { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-
-#tabela-contas th, #tabela-contas td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-
-#tabela-contas th { background-color: #007bff; color: white; }
-
-#totais { text-align: center; margin-bottom: 30px; }
-
-#totais p { font-size: 18px; margin: 5px 0; }
-
-.graficos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-.graficos canvas { background: #fff; border: 1px solid #ccc; border-radius: 8px; padding: 10px; }
-
+button:hover {
+  background-color: #005fa3;
+}
