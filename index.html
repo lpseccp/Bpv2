@@ -2,24 +2,57 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Balanço Patrimonial</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .home {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .home h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .home p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .home nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .home a {
+      padding: 15px 30px;
+      background-color: #1a73e8;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .home a:hover {
+      background-color: #0c5fd1;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Balanço Patrimonial</h1>
-    <nav>
-      <ul>
-        <li><a href="cadastro.html">Cadastro</a></li>
-        <li><a href="resumo.html">Resumo</a></li>
-        <li><a href="graficos.html">Gráficos</a></li>
-      </ul>
-    </nav>
-    <p>Bem-vindo ao sistema de controle patrimonial. Escolha uma opção acima.</p>
-  </div>
+  <div class="container home">
+    <h1>📊 Aplicativo de Balanço Patrimonial</h1>
+    <p>Escolha uma das opções abaixo para acessar as funcionalidades:</p>
 
-  <script src="app.js"></script>
+    <nav>
+      <a href="cadastro.html">Cadastro de Contas</a>
+      <a href="resumo.html">Resumo</a>
+      <a href="graficos.html">Gráficos</a>
+    </nav>
+  </div>
 </body>
 </html>
