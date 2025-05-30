@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumo Financeiro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Resumo Financeiro</h1>
+    <nav>
+      <ul>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="resumo.html">Resumo</a></li>
+        <li><a href="graficos.html">Gráficos</a></li>
+      </ul>
+    </nav>
+
+    <div id="resumo"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function exibirResumo() {
+      const contas = getContas();
+      let totalAtivos = 0;
+      let totalPassivos = 0;
+
+      contas.forEach(conta => {
+        if (conta.tipo === "ativo") totalAtivos += conta.valor;
+        else if (conta.tipo === "passivo") totalPassivos += conta.valor;
+      });
+
+      const diferenca = totalAtivos - totalPassivos;
+      let recomendacao = "";
+
+      if (diferenca < 0) {
+        recomendacao = "⚠️ Recomenda-se REDUZIR PASSIVOS ou AUMENTAR ATIVOS.";
+      } else if (diferenca === 0) {
+        recomendacao = "⚖️ Balanço equilibrado.";
+      } else {
+        recomendacao = "✅ Situação favorável, continue gerenciando com cautela.";
+      }
+
+      document.getElementById("resumo").innerHTML = `
+        <p><strong>Total de Ativos:</strong> R$ ${totalAtivos.toFixed(2)}</p>
+        <p><strong>Total de Passivos:</strong> R$ ${totalPassivos.toFixed(2)}</p>
+        <p><strong>Diferença:</strong> R$ ${diferenca.toFixed(2)}</p>
+        <p class="recomendacao">${recomendacao}</p>
+      `;
+    }
+
+    exibirResumo();
+  </script>
+</body>
+</html>
