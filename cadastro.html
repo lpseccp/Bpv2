@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Contas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Contas</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="resumo.html">Resumo</a></li>
+        <li><a href="graficos.html">Gráficos</a></li>
+      </ul>
+    </nav>
+
+    <h2>Nova Conta</h2>
+    <input type="text" id="nome" placeholder="Nome da conta" />
+    <input type="number" id="valor" placeholder="Valor (R$)" />
+    <select id="tipo">
+      <option value="ativo">Ativo</option>
+      <option value="passivo">Passivo</option>
+    </select>
+    <button onclick="adicionarConta()">Adicionar Conta</button>
+
+    <h2>Contas Registradas</h2>
+    <ul id="listaContas"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
